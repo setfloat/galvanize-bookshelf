@@ -10,7 +10,8 @@
   },
   "scripts": {
     "heroku-postbuild": "knex migrate:latest",
-    "knex": "knex"
+    "knex": "knex",
+    "test": "mocha"
   },
   "license": "MIT",
   "dependencies": {
