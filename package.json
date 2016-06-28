@@ -9,7 +9,7 @@
     "node": "6.2.2"
   },
   "scripts": {
-    "test": "mocha",
+    "heroku-postbuild": "knex migrate:latest",
     "knex": "knex"
   },
   "license": "MIT",
