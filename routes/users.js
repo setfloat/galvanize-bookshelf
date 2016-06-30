@@ -6,6 +6,8 @@ const router = express.Router();
 const knex = require('../knex');
 const bcrypt = require('bcrypt');
 
+
+
 router.post('/users', (req, res, next) => {
 const newUser = req.body;
 
@@ -47,7 +49,7 @@ if(!newUser.email || newUser.email.trim() === '') {
         return res
           .status(400)
           .set('Content-type', 'text/plain')
-          .send('The email you entered could not be registered. If you believe you are receiving this message in error or that you may already have an account, please contact enrollment services. enrollment@services.com')
+          .send('error')
       };
         knex('users')
         .insert({
