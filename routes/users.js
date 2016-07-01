@@ -6,8 +6,6 @@ const router = express.Router();
 const knex = require('../knex');
 const bcrypt = require('bcrypt');
 
-
-
 router.post('/users', (req, res, next) => {
 const newUser = req.body;
 
@@ -52,7 +50,7 @@ if(!newUser.email || newUser.email.trim() === '') {
           .send('error')
       };
         knex('users')
-        .insert({
+        .insert( {
           first_name: req.body.first_name,
           last_name: req.body.last_name,
           email: req.body.email,
