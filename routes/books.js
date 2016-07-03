@@ -76,6 +76,12 @@ router.patch('/books/:id', (req, res, next) => {
     });
 });
 
+
+
+// What we do in the delete:
+//   Capture the information that we are going to delete and pass that into the callback, this information is captured before the deletion occurs so we can later send it back to the user to affirm to them they deleted the correct thing.
+//   do the callback where we make a call again on the table we want to delete. mark what we wil delete with the .del() and then clarify where we want to delete with the
+
 router.delete('/books/:id', (req, res, next) => {
   knex('books')
     .where('id', req.params.id)
@@ -84,10 +90,10 @@ router.delete('/books/:id', (req, res, next) => {
       return knex('books')
       .del()
       .where('id', req.params.id)
-      .then(() => {
-        delete book.id;
-        res.send(book);
-      });
+        .then(() => {
+          delete book.id;
+          res.send(book);
+        });
     })
     .catch((err) => {
       next(err);

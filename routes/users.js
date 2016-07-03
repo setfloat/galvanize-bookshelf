@@ -45,18 +45,17 @@ if (!newUser.password || newUser.password.trim() === '') {
     //           .send('error')
     //         };
 
-            knex('users')
-              .select(knex.raw('1=1'))
-              .where('email', newUser.email)
-              .first()
-              .then((exists) => {
-                if (exists) {
-                  return res
-                    .status(400)
-                    .set('Content-Type', 'text/plain')
-                    .send('Email already exists');
-                }
-              })
+      knex('users')
+        .select(knex.raw('1=1'))
+        .where('email', newUser.email)
+        .first()
+        .then((exists) => {
+          if (exists) {
+            return res
+              .status(400)
+              .set('Content-Type', 'text/plain')
+              .send('Email already exists');
+          }
 
     knex('users')
       .insert({
@@ -73,6 +72,7 @@ if (!newUser.password || newUser.password.trim() === '') {
           next(err);
       })
   })
+})
 });
 
 
