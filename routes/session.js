@@ -1,4 +1,3 @@
-strict
 'use strict';
 
 const express = require('express');
@@ -7,7 +6,6 @@ const knex = require('../knex');
 const bcrypt = require('bcrypt');
 
 router.post('/session', (req, res, next) => {
-
   knex('users')
     .where('email', req.body.email)
     .first()
@@ -30,18 +28,18 @@ router.post('/session', (req, res, next) => {
         res.sendStatus(200);
       });
     })
-    .catch(err) => {
+    .catch((err) => {
       next(err);
-    };
+    });
 });
 
 router.delete('/session', (req, res, next) => {
   req.session = null;
-  req.clearCookie('loggedIn');
+  res.clearCookie('loggedIn');
   res.sendStatus(200);
 });
 
-module.exports(router);
+module.exports = router;
 //
 // add to the database using session
 //
