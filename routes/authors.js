@@ -53,12 +53,12 @@ router.delete('/authors/:id', (req, res, next) => {
     .first()
     .then((author) => {
       return knex('authors')
-      .del()
-      .where('id', req.params.id)
-      .then(() => {
-        delete author.id;
-        res.send(author);
-      });
+        .del()
+        .where('id', req.params.id)
+        .then(() => {
+          delete author.id;
+          res.send(author);
+        });
     })
     .catch((err) => {
       next(err);
